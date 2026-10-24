@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>声に出す熟語帳100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=JetBrains+Mono:wght@500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4FB; --card:#FFFFFF; --ink:#1B1D4D; --sub:#5A5F86;
+  --iris:#4F46E5; --iris-deep:#3B34C4; --iris-soft:#EDEFFF;
+  --sun:#FFC94D; --sun-soft:#FFF3D6;
+  --mint:#1FA971; --mint-soft:#E2F6EC;
+  --rose:#EF5DA8; --rose-soft:#FDEAF3;
+  --line:#E1E5F3; --line2:#C7CDE8;
+  --shadow:0 12px 32px rgba(27,29,77,.10);
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Zen Maru Gothic',system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1100px 480px at 88% -10%, #E2E6FF 0%, transparent 60%),
+    radial-gradient(900px 420px at -12% 18%, #FFF3D6 0%, transparent 55%),
+    var(--paper);
+  min-height:100vh;
+  line-height:1.6;
+  touch-action:manipulation;
+}
+button{font-family:inherit;color:inherit;cursor:pointer;border:none;background:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:disabled{opacity:.45;cursor:default}
+:focus-visible{outline:3px solid var(--iris);outline-offset:2px;border-radius:6px}
+.hidden{display:none!important}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* ---------- header ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(242,244,251,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.brand{font-weight:900;font-size:17px;letter-spacing:.02em;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand .num{font-family:'Baloo 2',sans-serif;color:var(--iris);font-weight:800}
+.iconbtn{width:40px;height:40px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--line);box-shadow:0 2px 6px rgba(27,29,77,.06);flex:none}
+.iconbtn svg{width:20px;height:20px}
+.iconbtn:hover{border-color:var(--iris);color:var(--iris)}
+.topstat{font-size:12px;font-weight:700;color:var(--sub);background:var(--card);border:1px solid var(--line);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.voicewarn{max-width:760px;margin:0 auto;padding:8px 16px;font-size:12px;color:#8A5A00;background:var(--sun-soft);display:none}
+.voicewarn.show{display:block}
+
+/* ---------- layout ---------- */
+main{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+.view{animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- hero ---------- */
+.hero{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:30px}
+.eyebrow{font-size:12px;font-weight:700;color:var(--iris);letter-spacing:.14em;margin-bottom:10px}
+h1{font-size:clamp(30px,7vw,44px);font-weight:900;line-height:1.25;letter-spacing:.01em}
+h1 .h-num{font-family:'Baloo 2',sans-serif;color:var(--iris);font-weight:800}
+.lead{color:var(--sub);font-size:14px;margin-top:10px;max-width:26em}
+.ringbox{position:relative;width:150px;height:150px;margin:0 auto}
+.ring{width:150px;height:150px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:11;stroke-linecap:round}
+.ring .bgc{stroke:var(--line)}
+.ring .fgc{stroke:var(--iris);transition:stroke-dashoffset .8s cubic-bezier(.2,.7,.3,1)}
+.ringtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ringtxt strong{font-family:'Baloo 2',sans-serif;font-size:34px;font-weight:800;line-height:1}
+.ringtxt span{font-size:11px;color:var(--sub);font-weight:700}
+.learnchip{margin-top:10px;text-align:center;font-size:12px;font-weight:700;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+/* ---------- sections ---------- */
+.h2{font-size:15px;font-weight:900;margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+.h2::before{content:"";width:8px;height:8px;border-radius:3px;background:var(--sun);transform:rotate(45deg)}
+
+/* ---------- mode cards ---------- */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:left;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.mode:hover{transform:translateY(-2px);border-color:var(--iris)}
+.mode .mico{width:42px;height:42px;border-radius:12px;background:var(--iris-soft);display:flex;align-items:center;justify-content:center;color:var(--iris)}
+.mode .mico svg{width:22px;height:22px}
+.mode b{font-size:15px;font-weight:900}
+.mode span{font-size:12px;color:var(--sub)}
+.mode.gold .mico{background:var(--sun-soft);color:#B77900}
+.mode.pink .mico{background:var(--rose-soft);color:#C42B7B}
+.mode.wide{grid-column:1/-1}
+.mode.green .mico{background:var(--mint-soft);color:#127A52}
+
+/* ---------- category chips ---------- */
+.cats{display:flex;flex-direction:column;gap:8px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left;transition:border-color .15s}
+.cat:hover{border-color:var(--iris)}
+.cat .cno{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--iris);background:var(--iris-soft);border-radius:8px;padding:3px 8px;flex:none}
+.cat .cname{flex:1;font-size:13px;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:normal;line-height:1.45}
+.cat .cstat{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub);flex:none}
+.cat .cbar{width:64px;height:6px;background:var(--line);border-radius:3px;overflow:hidden;flex:none}
+.cat .cbar i{display:block;height:100%;background:var(--mint);border-radius:3px;transition:width .5s}
+
+/* ---------- settings ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.settings{padding:16px;display:flex;flex-direction:column;gap:14px}
+.setrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.setrow label{font-size:13px;font-weight:700}
+select{font-family:inherit;font-size:13px;font-weight:700;color:var(--ink);background:#fff;border:1.5px solid var(--line2);border-radius:10px;padding:7px 10px}
+.toggle{position:relative;width:46px;height:26px;flex:none}
+.toggle input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.toggle i{position:absolute;inset:0;background:var(--line2);border-radius:999px;transition:background .2s;pointer-events:none}
+.toggle i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle input:checked + i{background:var(--mint)}
+.toggle input:checked + i::after{left:23px}
+.toggle input:focus-visible + i{outline:3px solid var(--iris);outline-offset:2px}
+.ghostbtn{font-size:13px;font-weight:700;padding:8px 14px;border-radius:10px;border:1.5px solid var(--line2);background:#fff;transition:border-color .15s,color .15s}
+.ghostbtn:hover{border-color:var(--iris);color:var(--iris)}
+.dangerbtn{font-size:13px;font-weight:700;padding:8px 14px;border-radius:10px;border:1.5px solid #F3C1D8;color:#C42B7B;background:#fff}
+.dangerbtn:hover{background:var(--rose-soft)}
+.fine{font-size:11.5px;color:var(--sub);margin-top:24px}
+
+/* ---------- sub view head ---------- */
+.subhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.subhead h2{font-size:20px;font-weight:900}
+.counter{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--sub)}
+.scopebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.scopebar label{font-size:12px;font-weight:700;color:var(--sub);display:flex;align-items:center;gap:6px}
+.scopebar .chk{gap:4px;cursor:pointer}
+.scopebar input[type=checkbox]{width:16px;height:16px;accent-color:var(--iris)}
+
+/* ---------- flashcard ---------- */
+.cardwrap{perspective:1400px;margin-bottom:14px}
+.card3d{display:grid;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.3,1);min-height:280px}
+.card3d.flipped{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:22px;display:flex;flex-direction:column;gap:14px}
+.face.back{transform:rotateY(180deg)}
+.face-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.chip{font-size:11px;font-weight:700;color:var(--iris);background:var(--iris-soft);border-radius:999px;padding:4px 10px}
+.no{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--sub)}
+.en{font-family:'Baloo 2','Zen Maru Gothic',sans-serif;font-size:clamp(28px,7vw,40px);font-weight:800;line-height:1.3;word-break:break-word}
+.jp{font-size:19px;font-weight:900;line-height:1.6}
+.ex{border-top:1px dashed var(--line2);padding-top:12px;display:flex;flex-direction:column;gap:4px}
+.ex-en{font-family:'Baloo 2','Zen Maru Gothic',sans-serif;font-size:16.5px;font-weight:600;line-height:1.55}
+.ex-jp{font-size:13px;color:var(--sub)}
+.sayline{font-size:12.5px;color:#8A5A00;background:var(--sun-soft);border-radius:10px;padding:6px 10px}
+.sayline b{font-family:'Baloo 2',sans-serif}
+.face-tools{display:flex;gap:8px;margin-top:auto}
+.toolbtn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:10px;background:var(--iris-soft);color:var(--iris)}
+.toolbtn svg{width:16px;height:16px}
+.taphint{text-align:center;font-size:11px;color:var(--line2);letter-spacing:.1em}
+.judg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.judge{display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:900;padding:14px;border-radius:14px;border:2px solid transparent;transition:transform .12s}
+.judge svg{width:18px;height:18px}
+.judge:active{transform:scale(.97)}
+.judge.again{background:var(--rose-soft);color:#C42B7B;border-color:#F6C4DE}
+.judge.known{background:var(--mint-soft);color:#127A52;border-color:#BFE8D4}
+.navrow{display:flex;align-items:center;gap:12px}
+.navrow.center{justify-content:center;margin-top:14px}
+.pbar{flex:1;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--iris),#7C74F2);border-radius:4px;transition:width .4s}
+.endbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px;text-align:center}
+.endbox .score{font-family:'Baloo 2',sans-serif;font-size:40px;font-weight:800;color:var(--iris);line-height:1.1}
+.endbox .misslist{margin:14px 0;text-align:left;display:flex;flex-direction:column;gap:6px}
+.missrow{display:flex;align-items:center;gap:10px;background:var(--rose-soft);border-radius:10px;padding:8px 10px;font-size:13px}
+.missrow b{font-family:'Baloo 2',sans-serif;font-weight:700}
+.missrow .mjp{color:var(--sub);font-size:12px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.primarybtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--iris);color:#fff;font-size:15px;font-weight:900;padding:13px 26px;border-radius:14px;box-shadow:0 6px 16px rgba(79,70,229,.35);transition:transform .12s,background .15s}
+.primarybtn:hover{background:var(--iris-deep)}
+.primarybtn:active{transform:scale(.97)}
+
+/* ---------- marker highlight (spoken text) ---------- */
+.hl{background-image:linear-gradient(var(--sun),var(--sun));background-repeat:no-repeat;background-size:0% 40%;background-position:0 80%;border-radius:3px;transition:background-size 1.6s linear}
+.speaking .hl,.speaking.hl{background-size:100% 40%}
+.hl2{background-image:linear-gradient(#FFDFA1,#FFDFA1);background-repeat:no-repeat;background-size:0% 55%;background-position:0 70%;border-radius:3px;transition:background-size 1.8s linear}
+.speaking .hl2,.speaking.hl2{background-size:100% 55%}
+
+/* ---------- waves ---------- */
+.waves{display:flex;gap:3px;align-items:center;height:44px}
+.waves span{width:4px;border-radius:2px;background:var(--iris);height:6px;transition:height .12s ease;opacity:.85}
+.waves:not(.on) span{animation:idlew 2.6s ease-in-out infinite}
+.waves:not(.on) span:nth-child(3n){animation-delay:.4s}
+.waves:not(.on) span:nth-child(3n+1){animation-delay:.8s}
+@keyframes idlew{0%,100%{height:5px}50%{height:13px}}
+
+/* ---------- speak view ---------- */
+.speakcard{padding:22px;display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.mode-toggle{display:inline-flex;background:var(--iris-soft);border-radius:12px;padding:3px;gap:2px;align-self:flex-start}
+.mode-toggle button{font-size:12px;font-weight:700;padding:7px 12px;border-radius:9px;color:var(--sub)}
+.mode-toggle button.on{background:#fff;color:var(--iris);box-shadow:0 2px 6px rgba(27,29,77,.12)}
+.togglstack{display:flex;flex-direction:column;gap:6px;align-self:flex-start}
+.idhint{font-size:12.5px;font-weight:700;color:var(--iris);background:var(--iris-soft);border-radius:8px;padding:5px 10px;align-self:flex-start;width:fit-content}
+.en.sent{font-size:clamp(20px,5.2vw,27px);line-height:1.5}
+.en.big{font-size:clamp(30px,7.5vw,42px)}
+.wavewrap{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;display:flex;align-items:center;gap:16px;min-height:74px;box-shadow:var(--shadow)}
+.livetext{flex:1;font-family:'Baloo 2','Zen Maru Gothic',sans-serif;font-size:15px;font-weight:600;color:var(--sub);min-height:1.5em;word-break:break-word}
+.microw{display:flex;align-items:center;gap:12px;margin:14px 0;flex-wrap:wrap}
+.micbtn{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:#fff;font-size:16px;font-weight:900;padding:14px 24px;border-radius:999px;box-shadow:0 8px 20px rgba(239,93,168,.4);transition:transform .12s,background .15s}
+.micbtn:hover{background:#E14A99}
+.micbtn:active{transform:scale(.96)}
+.micbtn svg{width:20px;height:20px}
+.micbtn.rec{background:#C42B7B;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,93,168,.45)}50%{box-shadow:0 0 0 12px rgba(239,93,168,0)}}
+.spresult{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:12px}
+.verdict{font-size:17px;font-weight:900}
+.verdict.perfect{color:var(--mint)}
+.verdict.near{color:#B77900}
+.verdict.miss{color:#C42B7B}
+.scorebig{font-family:'Baloo 2',sans-serif;font-size:30px;font-weight:800}
+.wordchips{display:flex;flex-wrap:wrap;gap:6px}
+.wchip{font-family:'Baloo 2',sans-serif;font-size:14px;font-weight:700;padding:4px 10px;border-radius:8px;border:1.5px solid var(--line2);color:var(--sub)}
+.wchip.hit{background:var(--mint-soft);border-color:#BFE8D4;color:#127A52}
+.wchip.lost{background:#F4F5FA;color:#9AA0C0;border-style:dashed}
+.heardline{font-size:13px;color:var(--sub)}
+.selfcheck{background:var(--sun-soft);border:1.5px solid #F3D9A0;border-radius:var(--r);padding:16px;font-size:13px;display:flex;flex-direction:column;gap:12px}
+.selfcheck .row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- quiz / listening ---------- */
+.qcard{padding:22px;display:flex;flex-direction:column;gap:16px;margin-bottom:14px}
+.qword{font-family:'Baloo 2','Zen Maru Gothic',sans-serif;font-size:clamp(24px,6vw,34px);font-weight:800;line-height:1.35;word-break:break-word}
+.qword.j{font-family:'Zen Maru Gothic',sans-serif;font-size:clamp(20px,5vw,26px);font-weight:900}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qopt{text-align:left;font-size:14px;font-weight:700;padding:13px 14px;border-radius:13px;border:1.5px solid var(--line2);background:#fff;transition:border-color .12s,background .12s;line-height:1.5}
+.qopt:hover:not(:disabled){border-color:var(--iris)}
+.qopt .ol{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--sub);display:block;margin-bottom:2px}
+.qopt.right{background:var(--mint-soft);border-color:#8FD9B8;color:#0E6B47}
+.qopt.wrong{background:var(--rose-soft);border-color:#F6C4DE;color:#C42B7B}
+.qfb{border-radius:var(--r);padding:14px 16px;font-size:13.5px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.qfb.ok{background:var(--mint-soft);border:1.5px solid #BFE8D4}
+.qfb.ng{background:var(--rose-soft);border:1.5px solid #F6C4DE}
+.qfb .ans{font-family:'Baloo 2','Zen Maru Gothic',sans-serif;font-size:16px;font-weight:800}
+.bigplay{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--iris-soft);color:var(--iris);font-size:16px;font-weight:900;padding:18px;border-radius:16px;transition:transform .12s}
+.bigplay:active{transform:scale(.97)}
+.bigplay svg{width:24px;height:24px}
+.phasechip{font-size:11px;font-weight:700;color:#fff;background:var(--iris);border-radius:999px;padding:3px 10px;transition:background .3s}
+.phasechip.jp{background:var(--mint)}
+.flowctrl{display:flex;align-items:center;justify-content:center;gap:14px}
+.locknote{font-size:11.5px;color:var(--sub);text-align:center;margin-top:10px;line-height:1.7}
+
+/* ---------- list ---------- */
+.listsec{margin-bottom:22px}
+.listsec > h3{font-size:14px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.listsec > h3 .lstat{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--sub);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+.lrow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-bottom:none;padding:11px 14px;width:100%;text-align:left;transition:background .12s}
+.lrow:first-of-type{border-radius:14px 14px 0 0}
+.lrow:last-of-type{border-bottom:1px solid var(--line);border-radius:0 0 14px 14px}
+.lrow:only-of-type{border-radius:14px}
+.lrow:hover{background:var(--iris-soft)}
+.lrow .dot{width:10px;height:10px;border-radius:50%;background:var(--line2);flex:none}
+.lrow .dot.l1{background:var(--sun)}
+.lrow .dot.l2{background:#FFAA33}
+.lrow .dot.l3{background:var(--mint)}
+.lrow .lmain{flex:1;min-width:0}
+.lrow .len{font-family:'Baloo 2',sans-serif;font-size:14.5px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lrow .ljp{font-size:12px;color:var(--sub);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lrow .lno{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--line2);flex:none}
+.lrow .lspk{color:var(--iris);flex:none;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.lrow .lspk svg{width:17px;height:17px}
+.lrow .lspk:hover{background:var(--iris-soft)}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(27,29,77,.45);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-card{background:var(--card);border-radius:22px;max-width:520px;width:100%;max-height:86vh;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 24px 60px rgba(27,29,77,.3)}
+.modal-close{align-self:flex-end;font-size:12px;font-weight:700;color:var(--sub);padding:6px 10px;border-radius:8px}
+.modal-close:hover{background:var(--iris-soft);color:var(--iris)}
+
+@media (max-width:560px){
+  .modes{grid-template-columns:1fr}
+  .qopts{grid-template-columns:1fr}
+  .hero{justify-content:center;text-align:center}
+  .lead{margin-inline:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <button id="backBtn" class="iconbtn hidden" aria-label="ホームへ戻る">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="brand" id="brandTitle">声に出す熟語帳<span class="num">100</span></div>
+    <div class="topstat" id="topStat">覚えた 0 / 100</div>
+  </div>
+  <div class="voicewarn" id="voiceWarn">この画面では音声が再生できないことがあります。ファイルをダウンロードして Chrome / Edge で開くと、読み上げと発音チェックが確実に動きます。</div>
+</header>
+
+<main>
+
+  <!-- ============ HOME ============ -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <div class="hero-l">
+        <div class="eyebrow">英熟語 100語 ・ 例文つき ・ 音声つき</div>
+        <h1>声に出す<br>熟語帳<span class="h-num">100</span></h1>
+        <p class="lead">見る・聞く・声に出す。3つの感覚をつなげて、100の英熟語と例文をまるごと記憶に残すアプリです。</p>
+        <div class="waves" id="heroWaves" aria-hidden="true"></div>
+      </div>
+      <div class="hero-r">
+        <div class="ringbox">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="bgc" cx="60" cy="60" r="52"/>
+            <circle class="fgc" id="ringFg" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+          </svg>
+          <div class="ringtxt"><strong id="ringNum">0</strong><span>/ 100 覚えた</span></div>
+        </div>
+        <div class="learnchip" id="learnChip">学習中 0語</div>
+      </div>
+    </div>
+
+    <h2 class="h2">モードを選ぶ</h2>
+    <div class="modes">
+      <button class="mode gold" data-go="cards">
+        <span class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg></span>
+        <b>カードで覚える</b><span>カードをめくって例文と意味を確認。例文の音声が流れます</span>
+      </button>
+      <button class="mode pink" data-go="speak">
+        <span class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+        <b>声に出して練習</b><span>例文をマイクに発音。AIが丸ごと聞き取って採点します</span>
+      </button>
+      <button class="mode green" data-go="listen">
+        <span class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4M7 6v12M11 3v18M15 6v12M19 9v6"/></svg></span>
+        <b>耳で聞いて当てる</b><span>例文の読み上げを聞いて、正しい意味を選びます</span>
+      </button>
+      <button class="mode" data-go="quiz">
+        <span class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9a3 3 0 1 1 4.6 2.5c-1 .7-1.6 1.3-1.6 2.5"/><circle cx="12" cy="17.5" r=".8" fill="currentColor"/><circle cx="12" cy="12" r="10"/></svg></span>
+        <b>クイズで試す</b><span>英→和・和→英の10問テストで定着をチェック</span>
+      </button>
+      <button class="mode wide" data-go="flow">
+        <span class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="7" rx="2"/><rect x="17" y="13" width="4" height="7" rx="2"/></svg></span>
+        <b>聞き流す</b><span>例文 → 和訳を自動で連続再生。手を離して耳だけの復習に</span>
+      </button>
+    </div>
+
+    <h2 class="h2">カテゴリから学ぶ</h2>
+    <div class="cats" id="catChips"></div>
+
+    <h2 class="h2">設定</h2>
+    <div class="settings card">
+      <div class="setrow">
+        <label for="rateSel">読み上げの速さ</label>
+        <select id="rateSel">
+          <option value="0.75">ゆっくり</option>
+          <option value="1" selected>ふつう</option>
+          <option value="1.15">はやめ</option>
+        </select>
+      </div>
+      <div class="setrow">
+        <label for="autoChk">カードを開いたら自動で読み上げる</label>
+        <span class="toggle"><input type="checkbox" id="autoChk" checked><i></i></span>
+      </div>
+      <div class="setrow">
+        <label>音声テスト</label>
+        <button id="testVoice" class="ghostbtn">音声を再生する</button>
+      </div>
+      <div class="setrow">
+        <label>学習記録</label>
+        <button id="resetBtn" class="dangerbtn">記録をリセット</button>
+      </div>
+    </div>
+
+    <p class="fine">出典:「覚える熟語一覧2」(PDF) 収録の100語・例文100文。例文の音声を中心に設計しています。読み上げと発音チェックにはブラウザの音声機能を使います。発音チェックは Chrome / Edge、または iOS 14.5 以降の Safari で、マイクの許可をしてご利用ください。iPhoneではサイレントスイッチが入っていると読み上げが聞こえないことがあります。また、発音チェックはSafari本体で開いたときのみ動きます(他アプリ内のブラウザやホーム画面のウェブアプリでは動かないことがあります)。</p>
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section id="view-cards" class="view hidden">
+    <div class="subhead"><h2>カードで覚える</h2><div class="counter" id="cardCount">- / -</div></div>
+    <div class="scopebar">
+      <label>範囲 <select id="cardScope"></select></label>
+      <label>順番 <select id="cardOrder"><option value="seq">そのまま</option><option value="rand">ランダム</option></select></label>
+      <label class="chk"><input type="checkbox" id="cardOnlyNew">未習得だけ</label>
+      <button id="cardRestart" class="ghostbtn">この範囲をやり直す</button>
+    </div>
+    <div class="cardwrap">
+      <div class="card3d" id="card3d">
+        <div class="face front" id="cardFront">
+          <div class="face-top"><span class="chip" id="cardCat"></span><span class="no" id="cardNo"></span></div>
+          <div class="en hl" id="cardEn"></div>
+          <div class="face-tools">
+            <button class="toolbtn" id="cardPlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg>例文を聞く</button>
+            <button class="toolbtn" id="cardSlow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>例文をゆっくり</button>
+          </div>
+          <div class="taphint">- タップで意味を見る -</div>
+        </div>
+        <div class="face back" id="cardBack">
+          <div class="face-top"><span class="chip" id="cardCat2"></span><span class="no" id="cardNo2"></span></div>
+          <div class="jp" id="cardJp"></div>
+          <div class="ex">
+            <div class="ex-en hl2" id="cardEx"></div>
+            <div class="ex-jp" id="cardExJp"></div>
+          </div>
+          <div class="face-tools">
+            <button class="toolbtn" id="cardReplay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg>もう一度聞く</button>
+            <button class="toolbtn" id="cardReplaySlow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>ゆっくり聞く</button>
+          </div>
+          <div class="sayline hidden" id="cardSay"></div>
+        </div>
+      </div>
+    </div>
+    <div class="judg">
+      <button class="judge again" id="btnAgain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>もう一度</button>
+      <button class="judge known" id="btnKnown"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>覚えた</button>
+    </div>
+    <div class="navrow">
+      <button class="iconbtn" id="cardPrev" aria-label="前のカードへ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="pbar"><i id="cardPbar"></i></div>
+      <button class="iconbtn" id="cardNext" aria-label="次のカードへ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="endbox hidden" id="cardDone" style="margin-top:14px">
+      <div class="score">デッキ完了!</div>
+      <p style="font-size:13px;color:var(--sub);margin:6px 0 14px">この範囲のカードを一周しました。</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="primarybtn" id="cardAgainRound">もう一周する</button>
+        <button class="ghostbtn" id="cardGoHome">ホームへ戻る</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPEAK ============ -->
+  <section id="view-speak" class="view hidden">
+    <div class="subhead"><h2>声に出して練習</h2><div class="counter" id="speakCount"></div></div>
+    <div class="scopebar">
+      <label>範囲 <select id="speakScope"></select></label>
+      <button id="speakRestart" class="ghostbtn">この範囲をやり直す</button>
+    </div>
+    <div class="speakcard card">
+      <div class="face-top"><span class="chip" id="spCat"></span><span class="no" id="spNo"></span></div>
+      <div class="togglstack">
+        <div class="mode-toggle" id="spTargetToggle">
+          <button data-t="ex" class="on">例文で練習</button>
+          <button data-t="idiom">熟語だけで練習</button>
+        </div>
+        <div class="mode-toggle" id="spModeToggle">
+          <button data-m="see" class="on">英語を見ながら発音</button>
+          <button data-m="recall">和訳から思い出す</button>
+        </div>
+      </div>
+      <div class="idhint hidden" id="spIdHint"></div>
+      <div class="en big hl" id="spEn"></div>
+      <div class="jp" id="spJp"></div>
+      <div class="sayline hidden" id="spSay"></div>
+      <div class="ex" id="spExWrap"><div class="ex-en hl2" id="spEx"></div><div class="ex-jp" id="spExJp"></div></div>
+    </div>
+    <div class="wavewrap">
+      <div class="waves" id="spWaves" aria-hidden="true"></div>
+      <div class="livetext" id="spLive">マイクを押して、熟語を声に出してみましょう</div>
+    </div>
+    <div class="microw">
+      <button class="micbtn" id="spMic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span id="spMicLabel">押して発音</span></button>
+      <button class="ghostbtn" id="spHear">お手本を聞く</button>
+    </div>
+    <div class="spresult hidden" id="spResult"></div>
+    <div class="selfcheck hidden" id="spSelf">
+      <b>この端末では音声認識が使えません</b>
+      <span>Chrome / Edge、iOS 15のSafariなら発音を採点できます。ここでは、声に出して読んだあとに自分で判定してください。</span>
+      <div class="row">
+        <button class="judge known" id="selfKnown"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>読めた</button>
+        <button class="judge again" id="selfAgain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>まだ自信ない</button>
+      </div>
+    </div>
+    <div class="navrow center"><button class="primarybtn" id="spNext">次の熟語へ</button></div>
+  </section>
+
+  <!-- ============ LISTEN ============ -->
+  <section id="view-listen" class="view hidden">
+    <div class="subhead"><h2>耳で聞いて当てる</h2><div class="counter" id="lsCount"></div></div>
+    <div class="scopebar">
+      <label>範囲 <select id="listenScope"></select></label>
+      <div class="mode-toggle" id="lsTargetToggle">
+        <button data-t="ex" class="on">例文で出題</button>
+        <button data-t="idiom">熟語だけ</button>
+      </div>
+      <button id="listenRestart" class="ghostbtn">この範囲をやり直す</button>
+    </div>
+    <div class="qcard card">
+      <button class="bigplay" id="lsPlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg>読み上げを聞く</button>
+      <div class="qopts" id="lsOpts"></div>
+    </div>
+    <div class="qfb hidden" id="lsFb"></div>
+    <div class="navrow center"><button class="primarybtn hidden" id="lsNext">次の問題へ</button></div>
+    <div class="endbox hidden" id="lsEnd" style="margin-top:14px"></div>
+  </section>
+
+    <!-- ============ FLOW ============ -->
+  <section id="view-flow" class="view hidden">
+    <div class="subhead"><h2>聞き流す</h2><div class="counter" id="flCount">- / -</div></div>
+    <div class="scopebar">
+      <label>範囲 <select id="flowScope"></select></label>
+      <label>速さ <select id="flowRate"><option value="1" selected>ふつう</option><option value="0.75">ゆっくり</option></select></label>
+      <button id="flowRestart" class="ghostbtn">最初から</button>
+    </div>
+    <div class="speakcard card flowcard">
+      <div class="face-top"><span class="chip" id="flCat"></span><span class="phasechip" id="flPhase">英語</span><span class="no" id="flNo"></span></div>
+      <div class="en sent hl2" id="flEn"></div>
+      <div class="jp hl" id="flJp"></div>
+      <div class="waves" id="flWaves" aria-hidden="true"></div>
+    </div>
+    <div class="pbar" style="margin-bottom:12px"><i id="flPbar"></i></div>
+    <div class="flowctrl">
+      <button class="iconbtn" id="flPrev" aria-label="前の例文へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="primarybtn" id="flPlay"><span id="flPlayLabel">一時停止</span></button>
+      <button class="iconbtn" id="flNext" aria-label="次の例文へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="locknote">画面をロックしても再生が続くことがあります(iOSのバージョンにより差があります)。途中で止まったら<b>ロックを解除するだけで現在の例文から自動で再開</b>します。ロック画面の再生ボタン(⏯)でも一時停止・再開できます。</div>
+    <div class="endbox hidden" id="flEnd" style="margin-top:14px"></div>
+  </section>
+
+<!-- ============ QUIZ ============ -->
+  <section id="view-quiz" class="view hidden">
+    <div class="subhead"><h2>クイズで試す</h2><div class="counter" id="qzCount"></div></div>
+    <div class="scopebar">
+      <label>範囲 <select id="quizScope"></select></label>
+      <div class="mode-toggle" id="qzDir">
+        <button data-d="e2j" class="on">英 → 和</button>
+        <button data-d="j2e">和 → 英</button>
+      </div>
+      <button id="quizRestart" class="ghostbtn">やり直す</button>
+    </div>
+    <div class="qcard card">
+      <div class="qword" id="qzWord"></div>
+      <div class="qopts" id="qzOpts"></div>
+    </div>
+    <div class="qfb hidden" id="qzFb"></div>
+    <div class="navrow center"><button class="primarybtn hidden" id="qzNext">次の問題へ</button></div>
+    <div class="endbox hidden" id="qzEnd" style="margin-top:14px"></div>
+  </section>
+
+  <!-- ============ LIST ============ -->
+  <section id="view-list" class="view hidden">
+    <div class="subhead"><h2>熟語一覧</h2><div class="counter" id="listStat"></div></div>
+    <p style="font-size:12.5px;color:var(--sub);margin-bottom:14px">行をタップすると例文カードが開きます。左の色は学習の進み方です(灰=未習得 / 黄=学習中 / 緑=覚えた)。</p>
+    <div id="listBody"></div>
+  </section>
+
+</main>
+
+<!-- ============ MODAL ============ -->
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">閉じる</button>
+    <div class="face-top"><span class="chip" id="mdCat"></span><span class="no" id="mdNo"></span></div>
+    <div class="en hl" id="mdEn" style="font-size:30px"></div>
+    <div class="jp" id="mdJp" style="font-size:16px"></div>
+    <div class="sayline hidden" id="mdSay"></div>
+    <div class="ex"><div class="ex-en hl2" id="mdEx"></div><div class="ex-jp" id="mdExJp"></div></div>
+    <div class="face-tools" style="margin-top:0">
+      <button class="toolbtn" id="mdPlayEx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg>例文を聞く</button>
+      <button class="toolbtn" id="mdPlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg>熟語を聞く</button>
+    </div>
+    <div class="judg">
+      <button class="judge again" id="mdAgain">もう一度</button>
+      <button class="judge known" id="mdKnown">覚えた</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const CATS = [null,
+  {name:"最優先! 動詞+前置詞・決まった表現"},
+  {name:"頻出の句動詞・動詞+副詞"},
+  {name:"英作文で使える表現"},
+  {name:"原因・結果・目的を表す表現"},
+  {name:"学校・社会・ニュースでの表現"},
+  {name:"英検2級〜準1級レベル"}
+];
+const DATA = [
+{n:1,cat:1,en:"learn from",jp:"〜から学ぶ",ex:"I learn from my mistakes.",exjp:"私は自分の間違いから学ぶ。"},
+{n:2,cat:1,en:"cooperate with",jp:"〜と協力する",ex:"We cooperate with each other.",exjp:"私たちはお互いに協力する。"},
+{n:3,cat:1,en:"have nothing to do with",jp:"〜と関係がない",ex:"This has nothing to do with me.",exjp:"これは私とは関係がない。"},
+{n:4,cat:1,en:"be known for",jp:"〜で知られている",ex:"Japan is known for its food.",exjp:"日本は食べ物で知られている。"},
+{n:5,cat:1,en:"be surprised to do",jp:"〜して驚く",ex:"I was surprised to hear the news.",exjp:"私はその知らせを聞いて驚いた。"},
+{n:6,cat:1,en:"be interested in",jp:"〜に興味がある",ex:"I am interested in music.",exjp:"私は音楽に興味がある。"},
+{n:7,cat:1,en:"be good at",jp:"〜が得意だ",ex:"She is good at math.",exjp:"彼女は数学が得意だ。"},
+{n:8,cat:1,en:"be afraid of",jp:"〜を恐れている",ex:"He is afraid of dogs.",exjp:"彼は犬を怖がっている。"},
+{n:9,cat:1,en:"be worried about",jp:"〜を心配している",ex:"I am worried about my test.",exjp:"私はテストを心配している。"},
+{n:10,cat:1,en:"think about",jp:"〜について考える",ex:"I think about my future.",exjp:"私は自分の将来について考える。"},
+{n:11,cat:1,en:"think of",jp:"〜を思いつく",ex:"I thought of a good idea.",exjp:"私はよい考えを思いついた。"},
+{n:12,cat:1,en:"talk about",jp:"〜について話す",ex:"We talked about school.",exjp:"私たちは学校について話した。"},
+{n:13,cat:1,en:"talk to",jp:"〜に話しかける",ex:"I talked to my teacher.",exjp:"私は先生に話しかけた。"},
+{n:14,cat:1,en:"listen to",jp:"〜を聴く",ex:"I listen to music every day.",exjp:"私は毎日音楽を聴く。"},
+{n:15,cat:1,en:"look at",jp:"〜を見る",ex:"Look at this picture.",exjp:"この写真を見て。"},
+{n:16,cat:1,en:"look for",jp:"〜を探す",ex:"I am looking for my phone.",exjp:"私は携帯電話を探している。"},
+{n:17,cat:1,en:"look after",jp:"〜の世話をする",ex:"I look after my little brother.",exjp:"私は弟の世話をする。"},
+{n:18,cat:1,en:"wait for",jp:"〜を待つ",ex:"I am waiting for the bus.",exjp:"私はバスを待っている。"},
+{n:19,cat:1,en:"depend on",jp:"〜次第である、〜に頼る",ex:"It depends on the weather.",exjp:"それは天気次第だ。"},
+{n:20,cat:1,en:"agree with",jp:"〜に賛成する",ex:"I agree with you.",exjp:"私はあなたに賛成だ。"},
+{n:21,cat:1,en:"worry about",jp:"〜を心配する",ex:"Don't worry about me.",exjp:"私のことは心配しないで。"},
+{n:22,cat:1,en:"succeed in",jp:"〜に成功する",ex:"She succeeded in passing the test.",exjp:"彼女は試験に合格した。"},
+{n:23,cat:1,en:"participate in",jp:"〜に参加する",ex:"I participated in the event.",exjp:"私はそのイベントに参加した。"},
+{n:24,cat:1,en:"apply for",jp:"〜に応募する、〜を申請する",ex:"I applied for the job.",exjp:"私はその仕事に応募した。"},
+{n:25,cat:1,en:"contribute to",jp:"〜に貢献する",ex:"We can contribute to society.",exjp:"私たちは社会に貢献できる。"},
+{n:26,cat:2,en:"find out",jp:"〜を知る、突き止める",ex:"I found out the truth.",exjp:"私は真実を知った。"},
+{n:27,cat:2,en:"give up",jp:"〜を諦める",ex:"Never give up your dream.",exjp:"夢を決して諦めないで。"},
+{n:28,cat:2,en:"carry out",jp:"〜を実行する",ex:"We carried out the plan.",exjp:"私たちはその計画を実行した。"},
+{n:29,cat:2,en:"take care of",jp:"〜の世話をする",ex:"I take care of my cat.",exjp:"私は猫の世話をする。"},
+{n:30,cat:2,en:"make use of",jp:"〜を活用する",ex:"We should make use of time.",exjp:"私たちは時間を活用すべきだ。"},
+{n:31,cat:2,en:"deal with",jp:"〜に対処する",ex:"I can deal with this problem.",exjp:"私はこの問題に対処できる。"},
+{n:32,cat:2,en:"come up with",jp:"〜を思いつく",ex:"She came up with a good idea.",exjp:"彼女はよい考えを思いついた。"},
+{n:33,cat:2,en:"turn out to be",jp:"結局〜だと分かる",ex:"He turned out to be kind.",exjp:"彼は親切な人だと分かった。"},
+{n:34,cat:2,en:"turn down",jp:"〜を断る",ex:"She turned down my offer.",exjp:"彼女は私の申し出を断った。"},
+{n:35,cat:2,en:"give back",jp:"〜を返す",ex:"Please give back my pen.",exjp:"私のペンを返してください。"},
+{n:36,cat:2,en:"take part in",jp:"〜に参加する",ex:"I took part in the race.",exjp:"私はそのレースに参加した。"},
+{n:37,cat:2,en:"bring about",jp:"〜をもたらす、引き起こす",ex:"This change brought about hope.",exjp:"この変化は希望をもたらした。"},
+{n:38,cat:2,en:"put off",jp:"〜を延期する",ex:"We put off the meeting.",exjp:"私たちは会議を延期した。"},
+{n:39,cat:2,en:"get over",jp:"〜を乗り越える",ex:"She got over her fear.",exjp:"彼女は恐怖を乗り越えた。"},
+{n:40,cat:2,en:"keep up with",jp:"〜についていく",ex:"I can't keep up with him.",exjp:"私は彼についていけない。"},
+{n:41,cat:3,en:"be able to do",jp:"〜することができる",ex:"I am able to swim.",exjp:"私は泳ぐことができる。"},
+{n:42,cat:3,en:"try to do",jp:"〜しようと努力する",ex:"I try to help others.",exjp:"私は他人を助けようと努力する。"},
+{n:43,cat:3,en:"decide to do",jp:"〜することを決める",ex:"I decided to study harder.",exjp:"私はもっと一生懸命勉強することに決めた。"},
+{n:44,cat:3,en:"plan to do",jp:"〜する予定だ",ex:"I plan to visit Kyoto.",exjp:"私は京都を訪れる予定だ。"},
+{n:45,cat:3,en:"hope to do",jp:"〜することを望む",ex:"I hope to see you again.",exjp:"またあなたに会いたいと思う。"},
+{n:46,cat:3,en:"want 人 to do",jp:"人に〜してほしい",ex:"I want you to help me.",exjp:"私はあなたに手伝ってほしい。",say:"want someone to do something"},
+{n:47,cat:3,en:"allow 人 to do",jp:"人が〜するのを許す",ex:"My parents allow me to go out.",exjp:"両親は私が外出することを許している。",say:"allow someone to do something"},
+{n:48,cat:3,en:"help 人 (to) do",jp:"人が〜するのを手伝う",ex:"She helped me carry the bag.",exjp:"彼女は私がバッグを運ぶのを手伝ってくれた。",say:"help someone do something"},
+{n:49,cat:3,en:"encourage 人 to do",jp:"人に〜するよう促す",ex:"My teacher encouraged me to try.",exjp:"先生は私に挑戦するよう促した。",say:"encourage someone to do something"},
+{n:50,cat:3,en:"ask 人 to do",jp:"人に〜するよう頼む",ex:"I asked him to wait.",exjp:"私は彼に待つよう頼んだ。",say:"ask someone to do something"},
+{n:51,cat:3,en:"make 人 do",jp:"人に〜させる",ex:"The joke made me laugh.",exjp:"その冗談で私は笑った。",say:"make someone do something"},
+{n:52,cat:3,en:"enable 人 to do",jp:"人が〜できるようにする",ex:"The internet enables us to learn.",exjp:"インターネットのおかげで私たちは学ぶことができる。",say:"enable someone to do something"},
+{n:53,cat:3,en:"prevent 人 from doing",jp:"人が〜するのを妨げる",ex:"Fear prevented me from speaking.",exjp:"恐怖のせいで私は話せなかった。",say:"prevent someone from doing something"},
+{n:54,cat:3,en:"spend 時間 doing",jp:"〜して時間を過ごす",ex:"I spend an hour reading.",exjp:"私は1時間読書をして過ごす。",say:"spend time doing something"},
+{n:55,cat:3,en:"have difficulty (in) doing",jp:"〜するのに苦労する",ex:"I have difficulty speaking English.",exjp:"私は英語を話すのに苦労する。",say:"have difficulty doing something"},
+{n:56,cat:4,en:"lead to",jp:"〜につながる",ex:"Stress can lead to illness.",exjp:"ストレスは病気につながることがある。"},
+{n:57,cat:4,en:"result in",jp:"〜という結果になる",ex:"Careless driving can result in accidents.",exjp:"不注意な運転は事故につながることがある。"},
+{n:58,cat:4,en:"result from",jp:"〜に起因する",ex:"The problem resulted from a mistake.",exjp:"その問題は間違いに起因した。"},
+{n:59,cat:4,en:"be caused by",jp:"〜によって引き起こされる",ex:"The fire was caused by lightning.",exjp:"その火事は雷によって引き起こされた。"},
+{n:60,cat:4,en:"be based on",jp:"〜に基づいている",ex:"The movie is based on a true story.",exjp:"その映画は実話に基づいている。"},
+{n:61,cat:4,en:"be related to",jp:"〜に関係している",ex:"Sleep is related to health.",exjp:"睡眠は健康に関係している。"},
+{n:62,cat:4,en:"be responsible for",jp:"〜に責任がある",ex:"He is responsible for this mistake.",exjp:"彼はこの間違いに責任がある。"},
+{n:63,cat:4,en:"be different from",jp:"〜と異なる",ex:"My idea is different from yours.",exjp:"私の考えはあなたの考えと違う。"},
+{n:64,cat:4,en:"be similar to",jp:"〜に似ている",ex:"This bag is similar to mine.",exjp:"このバッグは私のものに似ている。"},
+{n:65,cat:4,en:"be full of",jp:"〜でいっぱいだ",ex:"The box is full of books.",exjp:"その箱は本でいっぱいだ。"},
+{n:66,cat:4,en:"be afraid that",jp:"〜ではないかと心配する",ex:"I am afraid that he is sick.",exjp:"彼が病気なのではないかと心配だ。"},
+{n:67,cat:4,en:"make a difference",jp:"変化をもたす、違いを生む",ex:"Small actions can make a difference.",exjp:"小さな行動でも変化を生み出せる。"},
+{n:68,cat:4,en:"take advantage of",jp:"〜を活用する",ex:"We should take advantage of this chance.",exjp:"私たちはこの機会を活用すべきだ。"},
+{n:69,cat:4,en:"prevent ～ from happening",jp:"〜が起こるのを防ぐ",ex:"We must prevent accidents from happening.",exjp:"私たちは事故が起こるのを防がなければならない。",say:"prevent something from happening"},
+{n:70,cat:4,en:"have an effect on",jp:"〜に影響を与える",ex:"Sleep has an effect on health.",exjp:"睡眠は健康に影響を与える。"},
+{n:71,cat:5,en:"focus on",jp:"〜に集中する",ex:"I focus on my studies.",exjp:"私は勉強に集中する。"},
+{n:72,cat:5,en:"pay attention to",jp:"〜に注意を払う",ex:"Pay attention to the teacher.",exjp:"先生の話に注意を払いなさい。"},
+{n:73,cat:5,en:"take action",jp:"行動を起こす",ex:"We must take action now.",exjp:"私たちは今、行動を起こさなければならない。"},
+{n:74,cat:5,en:"raise awareness of",jp:"〜への意識を高める",ex:"We should raise awareness of pollution.",exjp:"私たちは公害への意識を高めるべきだ。"},
+{n:75,cat:5,en:"protect A from B",jp:"AをBから守る",ex:"Trees protect us from the sun.",exjp:"木は私たちを日差しから守る。",say:"protect someone from something"},
+{n:76,cat:5,en:"provide A with B",jp:"AにBを提供する",ex:"The school provides students with lunch.",exjp:"その学校は生徒に昼食を提供する。",say:"provide someone with something"},
+{n:77,cat:5,en:"offer A to B",jp:"BにAを提供する",ex:"She offered her seat to me.",exjp:"彼女は私に席を譲ってくれた。",say:"offer something to someone"},
+{n:78,cat:5,en:"communicate with",jp:"〜と意思疎通する",ex:"I communicate with my friends online.",exjp:"私は友達とオンラインで意思疎通する。"},
+{n:79,cat:5,en:"share A with B",jp:"BとAを共有する",ex:"I shared my food with him.",exjp:"私は彼と食べ物を分け合った。",say:"share something with someone"},
+{n:80,cat:5,en:"learn how to do",jp:"〜の仕方を学ぶ",ex:"I learned how to cook.",exjp:"私は料理の仕方を学んだ。"},
+{n:81,cat:5,en:"be involved in",jp:"〜に関わっている",ex:"She is involved in school events.",exjp:"彼女は学校行事に関わっている。"},
+{n:82,cat:5,en:"be familiar with",jp:"〜をよく知っている",ex:"I am familiar with this game.",exjp:"私はこのゲームをよく知っている。"},
+{n:83,cat:5,en:"be aware of",jp:"〜を認識している",ex:"We must be aware of the problem.",exjp:"私たちはその問題を認識しなければならない。"},
+{n:84,cat:5,en:"be likely to do",jp:"〜しそうだ",ex:"It is likely to rain today.",exjp:"今日は雨が降りそうだ。"},
+{n:85,cat:5,en:"be willing to do",jp:"進んで〜する、〜する意思がある",ex:"I am willing to help you.",exjp:"私は喜んであなたを手伝う。"},
+{n:86,cat:6,en:"take responsibility for",jp:"〜に責任を持つ",ex:"We must take responsibility for our actions.",exjp:"私たちは自分の行動に責任を持たなければならない。"},
+{n:87,cat:6,en:"come to realize",jp:"〜だと気づくようになる",ex:"I came to realize my mistake.",exjp:"私は自分の間違いに気づくようになった。"},
+{n:88,cat:6,en:"make an effort to do",jp:"〜する努力をする",ex:"I make an effort to study every day.",exjp:"私は毎日勉強するよう努力している。"},
+{n:89,cat:6,en:"make progress in",jp:"〜が進歩する、上達する",ex:"I made progress in English.",exjp:"私は英語が上達した。"},
+{n:90,cat:6,en:"have access to",jp:"〜を利用できる、〜を入手できる",ex:"Everyone should have access to education.",exjp:"誰もが教育を受けられるべきだ。"},
+{n:91,cat:6,en:"be exposed to",jp:"〜に触れる、さらされる",ex:"Children are exposed to new ideas.",exjp:"子どもたちは新しい考えに触れる。"},
+{n:92,cat:6,en:"adapt to",jp:"〜に適応する、慣れる",ex:"It takes time to adapt to a new school.",exjp:"新しい学校に慣れるには時間がかかる。"},
+{n:93,cat:6,en:"benefit from",jp:"〜から恩恵を受ける",ex:"We benefit from exercise.",exjp:"私たちは運動から恩恵を受ける。"},
+{n:94,cat:6,en:"recover from",jp:"〜から回復する",ex:"He recovered from his illness.",exjp:"彼は病気から回復した。"},
+{n:95,cat:6,en:"prevent ～ from doing",jp:"〜が…するのを妨げる",ex:"The rain prevented us from playing outside.",exjp:"雨のせいで私たちは外で遊べなかった。",say:"prevent someone from doing something"},
+{n:96,cat:6,en:"distinguish A from B",jp:"AとBを区別する",ex:"I can distinguish fact from opinion.",exjp:"私は事実と意見を区別できる。",say:"distinguish one from the other"},
+{n:97,cat:6,en:"replace A with B",jp:"AをBに置き換える",ex:"We replaced paper with computers.",exjp:"私たちは紙をコンピューターに置き換えた。",say:"replace something with something else"},
+{n:98,cat:6,en:"encourage A to do",jp:"Aに〜するよう促す",ex:"My parents encouraged me to try.",exjp:"両親は私に挑戦するよう促した。",say:"encourage someone to do something"},
+{n:99,cat:6,en:"have an opportunity to do",jp:"〜する機会がある",ex:"I had an opportunity to speak English.",exjp:"私は英語を話す機会があった。"},
+{n:100,cat:6,en:"play an important role in",jp:"〜で重要な役割を果たす",ex:"Teachers play an important role in society.",exjp:"教師は社会において重要な役割を果たす。"}
+];
+const byN = {}; DATA.forEach(d => byN[d.n] = d);
+
+/* ================= STATE ================= */
+const LSK = 'koe-jukugo-v1';
+function loadStore(){ try{ return JSON.parse(localStorage.getItem(LSK)); }catch(e){ return null; } }
+function saveStore(){ try{ localStorage.setItem(LSK, JSON.stringify(store)); }catch(e){} }
+let store = Object.assign({levels:{}, settings:{rate:1, auto:true}}, loadStore() || {});
+if(!store.levels) store.levels = {};
+if(!store.settings) store.settings = {rate:1, auto:true};
+const lv = d => store.levels[d.n] || 0;
+function setLv(d, v){ store.levels[d.n] = v; saveStore(); refreshProgress(); }
+
+const $ = id => document.getElementById(id);
+const shuffle = a => { a = a.slice(); for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = a => a[Math.floor(Math.random() * a.length)];
+
+/* ================= NAV ================= */
+let currentView = 'home';
+const TITLES = {home:'', cards:'カードで覚える', speak:'声に出して練習', listen:'耳で聞いて当てる', flow:'聞き流す', quiz:'クイズで試す', list:'熟語一覧'};
+function go(v){
+  currentView = v;
+  document.querySelectorAll('.view').forEach(s => s.classList.add('hidden'));
+  $('view-' + v).classList.remove('hidden');
+  $('backBtn').classList.toggle('hidden', v === 'home');
+  $('brandTitle').innerHTML = v === 'home' ? '声に出す熟語帳<span class="num">100</span>' : TITLES[v];
+  window.scrollTo({top:0, behavior:'instant'});
+  if(v !== 'speak') stopRecSilently();
+  if(v !== 'flow') stopFlow();
+  synthCancel();
+}
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
+  const v = b.dataset.go;
+  if(v === 'cards') startCards();
+  if(v === 'speak') startSpeak();
+  if(v === 'listen') startListen();
+  if(v === 'quiz') startQuiz();
+  if(v === 'flow') startFlow();
+  if(v === 'list') renderList();
+  go(v);
+}));
+$('backBtn').addEventListener('click', () => go('home'));
+
+/* ================= SPEECH (TTS) ================= */
+const synth = window.speechSynthesis || null;
+let voices = [];
+function refreshVoices(){ if(synth) voices = synth.getVoices(); }
+if(synth){ refreshVoices(); if(synth.onvoiceschanged !== undefined) synth.onvoiceschanged = refreshVoices; }
+function pickVoice(){
+  const en = voices.filter(v => /^en[-_]/i.test(v.lang) || /^en$/i.test(v.lang));
+  const prefs = [/Google US English/i, /Natural/i, /Aria|Jenny|Guy|Emma/i, /Samantha|Alex/i, /en[-_]US/i];
+  for(const p of prefs){ const f = en.find(v => p.test(v.name) || p.test(v.lang)); if(f) return f; }
+  return en[0] || null;
+}
+function synthCancel(){ try{ if(synth) synth.cancel(); }catch(e){} }
+let activeEl = null;
+let ttsUnlocked = false;
+function unlockTTS(){
+  if(ttsUnlocked || !synth) return;
+  try{
+    const u = new SpeechSynthesisUtterance(' ');
+    u.volume = 0; u.rate = 2; u.lang = 'en-US';
+    synth.speak(u);
+    ttsUnlocked = true;
+    refreshVoices();
+  }catch(e){}
+}
+['touchend','click'].forEach(ev => document.addEventListener(ev, unlockTTS, {passive:true}));
+function speak(text, opts){
+  opts = opts || {};
+  if(!synth || !text){ if(!synth) $('voiceWarn').classList.add('show'); return; }
+  refreshVoices();
+  synthCancel();
+  const start = () => {
+    try{
+      const u = new SpeechSynthesisUtterance(text);
+      const ja = opts.lang === 'ja';
+      u.lang = ja ? 'ja-JP' : 'en-US';
+      const v = ja ? pickJaVoice() : pickVoice(); if(v) u.voice = v;
+      u.rate = opts.rate || store.settings.rate;
+      u.onstart = () => { if(opts.el){ opts.el.classList.add('speaking'); activeEl = opts.el; } if(opts.wave) opts.wave.start(); };
+      const done = () => { if(opts.el){ opts.el.classList.remove('speaking'); if(activeEl === opts.el) activeEl = null; } if(opts.wave) opts.wave.stop(); if(opts.onend) opts.onend(); };
+      u.onend = done; u.onerror = done;
+      try{ synth.resume(); synth.speak(u); }catch(e){ $('voiceWarn').classList.add('show'); }
+    }catch(e){}
+  };
+  setTimeout(start, 60);
+}
+
+/* ================= WAVES ================= */
+function makeWaves(el, n){
+  n = n || 26;
+  el.innerHTML = '';
+  const spans = [];
+  for(let i = 0; i < n; i++){ const s = document.createElement('span'); el.appendChild(s); spans.push(s); }
+  let t = null;
+  return {
+    start(){ el.classList.add('on'); if(t) clearInterval(t); t = setInterval(() => spans.forEach(s => s.style.height = (6 + Math.random() * 32).toFixed(0) + 'px'), 110); },
+    stop(){ el.classList.remove('on'); if(t){ clearInterval(t); t = null; } spans.forEach((s, i) => s.style.height = ''); }
+  };
+}
+const heroWaves = makeWaves($('heroWaves'), 30);
+const spWaves = makeWaves($('spWaves'), 22);
+const flWaves = makeWaves($('flWaves'), 22);
+
+/* ================= PROGRESS ================= */
+const RING_C = 326.7;
+function refreshProgress(){
+  const known = DATA.filter(d => lv(d) >= 3).length;
+  const learning = DATA.filter(d => { const l = lv(d); return l >= 1 && l < 3; }).length;
+  $('ringNum').textContent = known;
+  $('ringFg').style.strokeDashoffset = (RING_C * (1 - known / DATA.length)).toFixed(1);
+  $('learnChip').textContent = '学習中 ' + learning + '語';
+  $('topStat').textContent = '覚えた ' + known + ' / 100';
+  renderCatChips();
+  if(currentView === 'list') renderList();
+}
+function renderCatChips(){
+  const box = $('catChips'); box.innerHTML = '';
+  CATS.forEach((c, i) => {
+    if(!c) return;
+    const items = DATA.filter(d => d.cat === i);
+    const known = items.filter(d => lv(d) >= 3).length;
+    const b = document.createElement('button');
+    b.className = 'cat';
+    b.innerHTML = '<span class="cno">CAT.' + i + '</span><span class="cname">' + c.name + '</span><span class="cstat">' + known + '/' + items.length + '</span><span class="cbar"><i style="width:' + (known / items.length * 100).toFixed(0) + '%"></i></span>';
+    b.addEventListener('click', () => { startCards(String(i)); go('cards'); });
+    box.appendChild(b);
+  });
+}
+
+/* ================= SCOPE SELECTS ================= */
+function fillScopeSelects(){
+  document.querySelectorAll('#cardScope,#speakScope,#listenScope,#quizScope,#flowScope').forEach(sel => {
+    if(sel.options.length) return;
+    const o0 = document.createElement('option'); o0.value = 'all'; o0.textContent = '全100語';
+    sel.appendChild(o0);
+    CATS.forEach((c, i) => { if(!c) return; const o = document.createElement('option'); o.value = String(i); o.textContent = 'CAT.' + i + ' ' + c.name; sel.appendChild(o); });
+  });
+}
+function poolFrom(sel, onlyNew){
+  let p = sel === 'all' ? DATA.slice() : DATA.filter(d => d.cat === Number(sel));
+  if(onlyNew) p = p.filter(d => lv(d) < 3);
+  return p;
+}
+
+/* ================= CARDS ================= */
+let deck = [], di = 0, flipped = false;
+function startCards(scope, forceList){
+  const sel = scope || $('cardScope').value || 'all';
+  if(scope) $('cardScope').value = scope;
+  let list = forceList ? forceList : poolFrom(sel, $('cardOnlyNew').checked);
+  if(!list.length){ list = poolFrom(sel, false); $('cardOnlyNew').checked = false; }
+  deck = $('cardOrder').value === 'rand' ? shuffle(list) : list;
+  di = 0;
+  $('cardDone').classList.add('hidden');
+  renderCard();
+}
+function curCard(){ return deck[di]; }
+function renderCard(){
+  const d = curCard();
+  if(!d) return;
+  flipped = false;
+  $('card3d').classList.remove('flipped');
+  $('cardCat').textContent = 'CAT.' + d.cat;
+  $('cardCat2').textContent = 'CAT.' + d.cat;
+  $('cardNo').textContent = 'No.' + d.n;
+  $('cardNo2').textContent = 'No.' + d.n;
+  $('cardEn').textContent = d.en;
+  $('cardJp').textContent = d.jp;
+  $('cardEx').textContent = d.ex;
+  $('cardExJp').textContent = d.exjp;
+  const sl = $('cardSay');
+  if(d.say){ sl.classList.remove('hidden'); sl.innerHTML = '話すときはこう読む: <b>' + d.say + '</b>'; } else sl.classList.add('hidden');
+  $('cardCount').textContent = (di + 1) + ' / ' + deck.length;
+  $('cardPbar').style.width = ((di) / deck.length * 100) + '%';
+  if(store.settings.auto) setTimeout(() => { if(currentView === 'cards' && !flipped) speak(d.ex, {el: $('cardFront')}); }, 350);
+}
+function flipCard(){
+  flipped = !flipped;
+  $('card3d').classList.toggle('flipped', flipped);
+  if(flipped && store.settings.auto){
+    const d = curCard();
+    setTimeout(() => { if(flipped) speak(d.ex, {el: $('cardBack'), rate: Math.min(1, store.settings.rate)}); }, 300);
+  }
+}
+$('card3d').addEventListener('click', e => { if(e.target.closest('button')) return; flipCard(); });
+$('cardPlay').addEventListener('click', () => { const d = curCard(); speak(d.ex, {el: $('cardFront')}); });
+$('cardSlow').addEventListener('click', () => { const d = curCard(); speak(d.ex, {el: $('cardFront'), rate: 0.75}); });
+$('cardReplay').addEventListener('click', () => { const d = curCard(); speak(d.ex, {el: $('cardEx')}); });
+$('cardReplaySlow').addEventListener('click', () => { const d = curCard(); speak(d.ex, {el: $('cardEx'), rate: 0.75}); });
+function stepCard(delta){
+  const ni = di + delta;
+  if(ni < 0 || ni >= deck.length){ if(ni >= deck.length) finishCards(); return; }
+  di = ni; renderCard();
+}
+function finishCards(){
+  $('cardDone').classList.remove('hidden');
+  $('cardPbar').style.width = '100%';
+}
+$('cardNext').addEventListener('click', () => stepCard(1));
+$('cardPrev').addEventListener('click', () => stepCard(-1));
+$('btnKnown').addEventListener('click', () => { setLv(curCard(), 3); stepCard(1); });
+$('btnAgain').addEventListener('click', () => { setLv(curCard(), 0); stepCard(1); });
+$('cardRestart').addEventListener('click', () => startCards());
+$('cardAgainRound').addEventListener('click', () => startCards());
+$('cardGoHome').addEventListener('click', () => go('home'));
+$('cardScope').addEventListener('change', () => startCards());
+$('cardOrder').addEventListener('change', () => startCards());
+$('cardOnlyNew').addEventListener('change', () => startCards());
+document.addEventListener('keydown', e => {
+  if(currentView === 'flow' && e.key === ' ' && e.target.tagName !== 'SELECT' && e.target.tagName !== 'INPUT'){ e.preventDefault(); if(flPlaying) pauseFl(); else playFl(); }
+  if(currentView !== 'cards') return;
+  if(e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
+  if(e.key === ' '){ e.preventDefault(); flipCard(); }
+  if(e.key === 'ArrowRight') stepCard(1);
+  if(e.key === 'ArrowLeft') stepCard(-1);
+});
+
+/* ================= SPEAK ================= */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+let rec = null, listening = false, finalText = '';
+let spPool = [], spItem = null, spMode = 'see', spTarget = 'ex', spIdx = 0, spTried = 0;
+function startSpeak(scope){
+  if(scope) $('speakScope').value = scope;
+  spPool = poolFrom($('speakScope').value, false);
+  spPool = shuffle(spPool);
+  spIdx = 0; spTried = 0;
+  renderSpeakItem();
+}
+function spTargetText(){ return spTarget === 'ex' ? spItem.ex : (spItem.say || spItem.en); }
+function renderSpeakDisplay(){
+  const see = spMode === 'see', ex = spTarget === 'ex';
+  $('spEn').classList.toggle('sent', ex);
+  $('spIdHint').classList.toggle('hidden', !ex);
+  if(ex){
+    $('spIdHint').textContent = see ? '使う熟語: ' + spItem.en : 'ヒント(熟語の意味): ' + spItem.jp;
+    $('spEn').textContent = see ? spItem.ex : '?? ?? ??';
+    $('spJp').textContent = see ? spItem.exjp : '';
+    $('spJp').classList.toggle('hidden', !see);
+    $('spExWrap').classList.add('hidden');
+  } else {
+    $('spIdHint').classList.add('hidden');
+    $('spEn').textContent = see ? spItem.en : '?? ?? ??';
+    $('spJp').textContent = spItem.jp;
+    $('spJp').classList.remove('hidden');
+    $('spExWrap').classList.toggle('hidden', !see);
+  }
+  const sl = $('spSay');
+  if(!ex && spItem.say && see){ sl.classList.remove('hidden'); sl.innerHTML = '話すときはこう読む: <b>' + spItem.say + '</b>'; } else sl.classList.add('hidden');
+}
+function renderSpeakItem(){
+  spItem = spPool[spIdx % spPool.length];
+  spTried = 0;
+  $('spResult').classList.add('hidden');
+  $('spCat').textContent = 'CAT.' + spItem.cat;
+  $('spNo').textContent = 'No.' + spItem.n;
+  renderSpeakDisplay();
+  $('speakCount').textContent = (spIdx % spPool.length + 1) + ' / ' + spPool.length;
+  $('spLive').textContent = spTarget === 'ex' ? 'マイクを押して、例文を声に出して読みましょう' : 'マイクを押して、熟語を声に出してみましょう';
+  $('spMic').disabled = false;
+  $('spMicLabel').textContent = '押して発音';
+  if(SR && store.settings.auto) setTimeout(() => { if(currentView === 'speak') speak(spTargetText(), {el: $('spEn')}); }, 350);
+}
+function toggleRec(){
+  if(!SR){ $('spSelf').classList.remove('hidden'); return; }
+  if(listening){ try{ rec.stop(); }catch(e){} return; }
+  if(!window.isSecureContext){ $('spSelf').classList.remove('hidden'); return; }
+  synthCancel();
+  finalText = '';
+  rec = new SR();
+  rec.lang = 'en-US';
+  rec.interimResults = true;
+  rec.maxAlternatives = 3;
+  rec.continuous = false;
+  rec.onresult = e => {
+    let interim = '';
+    for(let i = 0; i < e.results.length; i++){
+      const r = e.results[i];
+      if(r.isFinal) finalText += r[0].transcript + ' ';
+      else interim += r[0].transcript;
+    }
+    $('spLive').textContent = (finalText + interim).trim() || '聞き取っています...';
+  };
+  rec.onerror = e => {
+    listening = false; spWaves.stop(); $('spMic').classList.remove('rec'); $('spMicLabel').textContent = '押して発音';
+    if(e.error === 'not-allowed' || e.error === 'service-not-allowed'){
+      $('spSelf').classList.remove('hidden');
+      $('spLive').textContent = 'マイクが許可されていません';
+    } else {
+      $('spLive').textContent = 'うまく聞き取れませんでした。もう一度押してみましょう';
+    }
+  };
+  rec.onend = () => {
+    listening = false; spWaves.stop();
+    $('spMic').classList.remove('rec'); $('spMicLabel').textContent = '押して発音';
+    if(finalText.trim()) evaluateSpeak(finalText);
+    else if($('spLive').textContent.indexOf('聞き取') === -1 && $('spLive').textContent.indexOf('許可') === -1) $('spLive').textContent = '声が聞き取れませんでした。もう一度';
+  };
+  try{
+    rec.start();
+    listening = true;
+    spWaves.start();
+    $('spMic').classList.add('rec');
+    $('spMicLabel').textContent = '聞き取り中...タップで停止';
+    $('spResult').classList.add('hidden');
+    $('spLive').textContent = '聞き取っています...';
+  }catch(e){ $('spSelf').classList.remove('hidden'); }
+}
+function stopRecSilently(){ if(listening && rec){ try{ rec.onend = null; rec.stop(); }catch(e){} listening = false; } spWaves.stop(); if($('spMic')) $('spMic').classList.remove('rec'); }
+function tokenize(s){
+  return s.toLowerCase()
+    .replace(/[\u2019\u2018`]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/).filter(Boolean);
+}
+function lev(a, b){
+  const m = a.length, n = b.length;
+  if(Math.abs(m - n) > 2) return 9;
+  const dp = Array.from({length: m + 1}, (_, i) => [i, ...Array(n).fill(0)]);
+  for(let j = 0; j <= n; j++) dp[0][j] = j;
+  for(let i = 1; i <= m; i++) for(let j = 1; j <= n; j++)
+    dp[i][j] = Math.min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1));
+  return dp[m][n];
+}
+function tokenHit(t, arr){
+  if(arr.includes(t)) return true;
+  if(t.length >= 4) return arr.some(w => lev(t, w) <= 1);
+  return false;
+}
+function evaluateSpeak(text){
+  const target = tokenize(spTargetText());
+  const heard = tokenize(text);
+  const used = new Array(heard.length).fill(false);
+  const hits = target.map(t => {
+    let idx = heard.findIndex((w, i) => !used[i] && tokenHit(t, [w]));
+    if(idx === -1){ idx = heard.findIndex((w, i) => !used[i] && tokenHit(t, [w])); }
+    if(idx === -1) return false;
+    used[idx] = true; return true;
+  });
+  const score = target.length ? hits.filter(Boolean).length / target.length : 0;
+  spTried++;
+  if(score >= 0.999) setLv(spItem, 3);
+  else if(score >= 0.7 && lv(spItem) < 3) setLv(spItem, Math.max(lv(spItem), 2));
+  const box = $('spResult');
+  box.classList.remove('hidden');
+  let head, cls;
+  if(score >= 0.999){ head = 'パーフェクト! その調子!'; cls = 'perfect'; }
+  else if(score >= 0.7){ head = 'すごく近い! もう一度言ってみよう'; cls = 'near'; }
+  else { head = 'もう一度チャレンジ!'; cls = 'miss'; }
+  const chips = target.map((t, i) => '<span class="wchip ' + (hits[i] ? 'hit' : 'lost') + '">' + t + '</span>').join('');
+  box.innerHTML =
+    '<div class="verdict ' + cls + '" style="font-weight:900">' + head + ' <span class="scorebig">' + Math.round(score * 100) + '%</span></div>' +
+    '<div class="wordchips">' + chips + '</div>' +
+    '<div class="heardline">聞き取った声: 「' + text.trim().replace(/</g, '&lt;') + '」</div>';
+  $('spLive').textContent = '結果が出ました。もう一度挑戦するか、次へ進みましょう';
+  speak(spTargetText(), {el: $('spEn')});
+}
+$('spMic').addEventListener('click', toggleRec);
+$('spHear').addEventListener('click', () => speak(spTargetText(), {el: $('spEn')}));
+$('spNext').addEventListener('click', () => { spIdx++; renderSpeakItem(); });
+$('spModeToggle').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  spMode = b.dataset.m;
+  document.querySelectorAll('#spModeToggle button').forEach(x => x.classList.toggle('on', x === b));
+  renderSpeakDisplay();
+});
+$('spTargetToggle').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  spTarget = b.dataset.t;
+  document.querySelectorAll('#spTargetToggle button').forEach(x => x.classList.toggle('on', x === b));
+  renderSpeakDisplay();
+});
+$('speakScope').addEventListener('change', () => startSpeak());
+$('speakRestart').addEventListener('click', () => startSpeak());
+$('selfKnown').addEventListener('click', () => { setLv(spItem, Math.max(lv(spItem), 2)); spIdx++; renderSpeakItem(); });
+$('selfAgain').addEventListener('click', () => { setLv(spItem, 0); $('spLive').textContent = 'もう一度声に出して読んでみましょう'; });
+
+/* ================= LISTEN ================= */
+let lsPool = [], lsQs = [], lsQi = 0, lsScore = 0, lsMissed = [], lsAnswered = false, lsTarget = 'ex';
+function startListen(scope){
+  if(scope) $('listenScope').value = scope;
+  lsPool = poolFrom($('listenScope').value, false);
+  const n = Math.min(10, lsPool.length);
+  lsQs = shuffle(lsPool).slice(0, n).map(item => {
+    const same = lsPool.filter(d => d.n !== item.n);
+    const distr = [];
+    const sameCat = shuffle(same.filter(d => d.cat === item.cat));
+    const others = shuffle(same.filter(d => d.cat !== item.cat));
+    while(distr.length < 3 && (sameCat.length || others.length)){ const src = (sameCat.length && (distr.length < 2 || !others.length)) ? sameCat : others; const c = src.pop(); if(!distr.includes(c)) distr.push(c); }
+    const opts = shuffle([item, ...distr]);
+    return {item, opts};
+  });
+  lsQi = 0; lsScore = 0; lsMissed = [];
+  $('lsEnd').classList.add('hidden');
+  renderListenQ();
+}
+function renderListenQ(){
+  const q = lsQs[lsQi];
+  lsAnswered = false;
+  $('lsCount').textContent = '問 ' + (lsQi + 1) + ' / ' + lsQs.length;
+  $('lsFb').classList.add('hidden');
+  $('lsNext').classList.add('hidden');
+  const box = $('lsOpts'); box.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'qopt';
+    b.innerHTML = '<span class="ol">' + 'ABCD'[i] + '</span>' + o.jp;
+    b.addEventListener('click', () => answerListen(i, b));
+    box.appendChild(b);
+  });
+  setTimeout(() => { if(currentView === 'listen') playListen(); }, 400);
+}
+function playListen(){
+  const q = lsQs[lsQi]; if(!q) return;
+  const t = lsTarget === 'ex' ? q.item.ex : (q.item.say || q.item.en);
+  speak(t, {el: $('lsPlay'), rate: lsTarget === 'ex' ? store.settings.rate : Math.min(1, store.settings.rate)});
+}
+function answerListen(i, btn){
+  if(lsAnswered) return;
+  lsAnswered = true;
+  const q = lsQs[lsQi];
+  const correct = q.opts[i].n === q.item.n;
+  const box = $('lsOpts');
+  [...box.children].forEach((b, j) => {
+    b.disabled = true;
+    if(q.opts[j].n === q.item.n) b.classList.add('right');
+    else if(j === i) b.classList.add('wrong');
+  });
+  const fb = $('lsFb');
+  fb.classList.remove('hidden');
+  if(correct){
+    lsScore++;
+    fb.className = 'qfb ok';
+    fb.innerHTML = '<b>正解!</b><span class="ans">' + q.item.en + ' — ' + q.item.jp + '</span><span>' + q.item.ex + '</span>';
+    setLv(q.item, Math.max(lv(q.item), 2));
+  } else {
+    lsMissed.push(q.item);
+    fb.className = 'qfb ng';
+    fb.innerHTML = '<b>答え: ' + q.item.en + ' — ' + q.item.jp + '</b><span>' + q.item.ex + '（' + q.item.exjp + '）</span>';
+    setLv(q.item, 0);
+  }
+  $('lsNext').classList.remove('hidden');
+  speak(q.item.ex, {el: fb, rate: Math.min(1, store.settings.rate)});
+}
+$('lsPlay').addEventListener('click', playListen);
+$('lsNext').addEventListener('click', () => {
+  lsQi++;
+  if(lsQi >= lsQs.length) finishListen();
+  else renderListenQ();
+});
+function endBoxHTML(score, total, missed, againFn){
+  const el = document.createElement('div');
+  let html = '<div class="score">' + score + ' / ' + total + '</div><p style="font-size:13px;color:var(--sub);margin:6px 0 0">' + (score === total ? '全問正解! 素晴らしい!' : 'まちがえた熟語はカードでも復習できます。') + '</p>';
+  if(missed.length){
+    html += '<div class="misslist">' + missed.map(d =>
+      '<div class="missrow"><b>' + d.en + '</b><span class="mjp">' + d.jp + '</span><button class="toolbtn" data-n="' + d.n + '">聞く</button></div>'
+    ).join('') + '</div>';
+  }
+  html += '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="primarybtn" data-a="again">もう一度</button><button class="ghostbtn" data-a="home">ホームへ戻る</button></div>';
+  el.innerHTML = html;
+  el.querySelectorAll('[data-n]').forEach(b => b.addEventListener('click', () => { const d = byN[Number(b.dataset.n)]; speak(d.ex, {el: b}); }));
+  el.querySelector('[data-a=again]').addEventListener('click', againFn);
+  el.querySelector('[data-a=home]').addEventListener('click', () => go('home'));
+  return el;
+}
+function finishListen(){
+  $('lsFb').classList.add('hidden');
+  $('lsNext').classList.add('hidden');
+  document.querySelector('#view-listen .qcard').classList.add('hidden');
+  const end = $('lsEnd');
+  end.innerHTML = '';
+  end.appendChild(endBoxHTML(lsScore, lsQs.length, lsMissed, () => { end.classList.add('hidden'); document.querySelector('#view-listen .qcard').classList.remove('hidden'); startListen(); }));
+  end.classList.remove('hidden');
+  $('lsCount').textContent = '結果';
+}
+$('listenScope').addEventListener('change', () => startListen());
+$('listenRestart').addEventListener('click', () => startListen());
+$('lsTargetToggle').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  lsTarget = b.dataset.t;
+  document.querySelectorAll('#lsTargetToggle button').forEach(x => x.classList.toggle('on', x === b));
+  renderListenQ();
+});
+
+/* ================= FLOW (聞き流し) ================= */
+function pickJaVoice(){ const ja = voices.filter(v => /^ja[-_]/i.test(v.lang) || v.lang === 'ja'); return ja[0] || null; }
+let flPool = [], flIdx = 0, flPlaying = false, flWantPlaying = false, flToken = 0;
+
+/* ---- keep-alive: silent loop audio keeps the page's audio session alive on iOS lock ---- */
+const SILENT_WAV = 'data:audio/wav;base64,' + 'UklGRmQfAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YUAfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
+let keepAlive = null;
+function startKeepAlive(){
+  if(!keepAlive){
+    keepAlive = new Audio(SILENT_WAV);
+    keepAlive.loop = true;
+    keepAlive.volume = 1;
+  }
+  try{ keepAlive.play().catch(function(){}); }catch(e){}
+  if('mediaSession' in navigator){
+    try{ navigator.mediaSession.metadata = new MediaMetadata({title: '聞き流し中 - 声に出す熟語帳100', artist: '英熟語・例文の復習'}); }catch(e){}
+  }
+}
+function stopKeepAlive(){ if(keepAlive){ try{ keepAlive.pause(); }catch(e){} } }
+function updateMediaState(st){ if('mediaSession' in navigator){ try{ navigator.mediaSession.playbackState = st; }catch(e){} } }
+function setupMediaSession(){
+  if(!('mediaSession' in navigator)) return;
+  const ms = navigator.mediaSession;
+  try{
+    ms.setActionHandler('play', () => {
+      if(keepAlive && keepAlive.paused){ try{ keepAlive.play().catch(function(){}); }catch(e){} }
+      if(currentView === 'flow' && !flPlaying) playFl();
+    });
+  }catch(e){}
+  try{ ms.setActionHandler('pause', () => { if(currentView === 'flow' && flPlaying) pauseFl(); }); }catch(e){}
+  try{
+    ms.setActionHandler('nexttrack', () => {
+      if(currentView !== 'flow') return;
+      flToken++; flIdx = flPool.length ? (flIdx + 1) % flPool.length : 0;
+      renderFlItem(); if(flWantPlaying) playFl();
+    });
+  }catch(e){}
+  try{
+    ms.setActionHandler('previoustrack', () => {
+      if(currentView !== 'flow') return;
+      flToken++; flIdx = flPool.length ? (flIdx - 1 + flPool.length) % flPool.length : 0;
+      renderFlItem(); if(flWantPlaying) playFl();
+    });
+  }catch(e){}
+}
+setupMediaSession();
+/* unlock -> auto-resume the current sentence */
+document.addEventListener('visibilitychange', () => {
+  if(document.hidden) return;
+  if(currentView !== 'flow' || !flWantPlaying) return;
+  if(keepAlive && keepAlive.paused) startKeepAlive();
+  if(!flPlaying) playFl();
+});
+window.addEventListener('pageshow', e => {
+  if(!e.persisted) return;
+  if(currentView === 'flow' && flWantPlaying && !flPlaying) playFl();
+});
+function startFlow(scope){
+  if(scope) $('flowScope').value = scope;
+  flPool = poolFrom($('flowScope').value, false);
+  flIdx = 0;
+  $('flEnd').classList.add('hidden');
+  document.querySelector('#view-flow .flowcard').classList.remove('hidden');
+  renderFlItem();
+  playFl();
+}
+function renderFlItem(){
+  const d = flPool[flIdx];
+  if(!d) return;
+  $('flCat').textContent = 'CAT.' + d.cat;
+  $('flNo').textContent = 'No.' + d.n;
+  $('flEn').textContent = d.ex;
+  $('flJp').textContent = d.exjp;
+  $('flCount').textContent = (flIdx + 1) + ' / ' + flPool.length;
+  $('flPbar').style.width = (flIdx / flPool.length * 100) + '%';
+  $('flPhase').textContent = '英語';
+  $('flPhase').classList.remove('jp');
+}
+function playFl(){
+  const d = flPool[flIdx];
+  if(!d) return;
+  if(!synth){ $('voiceWarn').classList.add('show'); return; }
+  flPlaying = true;
+  flWantPlaying = true;
+  startKeepAlive();
+  updateMediaState('playing');
+  $('flPlayLabel').textContent = '一時停止';
+  const t = ++flToken;
+  const rate = Number($('flowRate').value);
+  speak(d.ex, {el: $('flEn'), wave: flWaves, rate: rate, onend: () => {
+    if(t !== flToken || !flPlaying) return;
+    $('flPhase').textContent = '日本語';
+    $('flPhase').classList.add('jp');
+    speak(d.exjp, {el: $('flJp'), wave: flWaves, lang: 'ja', rate: rate, onend: () => {
+      if(t !== flToken || !flPlaying) return;
+      setTimeout(() => {
+        if(t !== flToken || !flPlaying) return;
+        flIdx++;
+        if(flIdx >= flPool.length) finishFlow();
+        else { renderFlItem(); playFl(); }
+      }, 900);
+    }});
+  }});
+}
+function pauseFl(){
+  flPlaying = false;
+  flWantPlaying = false;
+  updateMediaState('paused');
+  flToken++;
+  $('flPlayLabel').textContent = '再生';
+  synthCancel();
+  if(flWaves) flWaves.stop();
+}
+function stopFlow(){
+  flPlaying = false;
+  flWantPlaying = false;
+  stopKeepAlive();
+  updateMediaState('paused');
+  flToken++;
+  const lb = $('flPlayLabel'); if(lb) lb.textContent = '再生';
+}
+function finishFlow(){
+  flPlaying = false;
+  flWantPlaying = false;
+  updateMediaState('paused');
+  flToken++;
+  $('flPlayLabel').textContent = '再生';
+  document.querySelector('#view-flow .flowcard').classList.add('hidden');
+  const end = $('flEnd');
+  end.innerHTML = '<div class="score">一周しました!</div><p style="font-size:13px;color:var(--sub);margin:6px 0 14px">' + flPool.length + '文を聞き流しました。声に出して復唱できた熟語から、カードモードで「覚えた」にしていきましょう。</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="primarybtn" data-a="again">もう一周する</button><button class="ghostbtn" data-a="home">ホームへ戻る</button></div>';
+  end.querySelector('[data-a=again]').addEventListener('click', () => { end.classList.add('hidden'); document.querySelector('#view-flow .flowcard').classList.remove('hidden'); startFlow(); });
+  end.querySelector('[data-a=home]').addEventListener('click', () => go('home'));
+  end.classList.remove('hidden');
+  $('flCount').textContent = '結果';
+}
+$('flPlay').addEventListener('click', () => { if(flPlaying) pauseFl(); else playFl(); });
+$('flNext').addEventListener('click', () => { const was = flPlaying; flToken++; flIdx = flPool.length ? (flIdx + 1) % flPool.length : 0; renderFlItem(); if(was) playFl(); });
+$('flPrev').addEventListener('click', () => { const was = flPlaying; flToken++; flIdx = flPool.length ? (flIdx - 1 + flPool.length) % flPool.length : 0; renderFlItem(); if(was) playFl(); });
+$('flowScope').addEventListener('change', () => startFlow());
+$('flowRestart').addEventListener('click', () => startFlow());
+
+/* ================= QUIZ ================= */
+let qzPool = [], qzQs = [], qzQi = 0, qzScore = 0, qzMissed = [], qzDir = 'e2j', qzAnswered = false;
+function startQuiz(scope){
+  if(scope) $('quizScope').value = scope;
+  qzPool = poolFrom($('quizScope').value, false);
+  const n = Math.min(10, qzPool.length);
+  qzQs = shuffle(qzPool).slice(0, n).map(item => {
+    const same = qzPool.filter(d => d.n !== item.n);
+    const distr = [];
+    const sameCat = shuffle(same.filter(d => d.cat === item.cat));
+    const others = shuffle(same.filter(d => d.cat !== item.cat));
+    while(distr.length < 3 && (sameCat.length || others.length)){ const src = (sameCat.length && (distr.length < 2 || !others.length)) ? sameCat : others; const c = src.pop(); if(!distr.includes(c)) distr.push(c); }
+    const opts = shuffle([item, ...distr]);
+    return {item, opts};
+  });
+  qzQi = 0; qzScore = 0; qzMissed = [];
+  $('qzEnd').classList.add('hidden');
+  document.querySelector('#view-quiz .qcard').classList.remove('hidden');
+  renderQuizQ();
+}
+function renderQuizQ(){
+  const q = qzQs[qzQi];
+  qzAnswered = false;
+  $('qzCount').textContent = '問 ' + (qzQi + 1) + ' / ' + qzQs.length;
+  $('qzFb').classList.add('hidden');
+  $('qzNext').classList.add('hidden');
+  const w = $('qzWord');
+  if(qzDir === 'e2j'){ w.className = 'qword'; w.textContent = q.item.en; }
+  else { w.className = 'qword j'; w.textContent = q.item.jp; }
+  const box = $('qzOpts'); box.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const b = document.createElement('button');
+    b.className = 'qopt';
+    const label = qzDir === 'e2j' ? o.jp : o.en;
+    b.innerHTML = '<span class="ol">' + 'ABCD'[i] + '</span>' + label;
+    b.addEventListener('click', () => answerQuiz(i));
+    box.appendChild(b);
+  });
+}
+function answerQuiz(i){
+  if(qzAnswered) return;
+  qzAnswered = true;
+  const q = qzQs[qzQi];
+  const correct = q.opts[i].n === q.item.n;
+  const box = $('qzOpts');
+  [...box.children].forEach((b, j) => {
+    b.disabled = true;
+    if(q.opts[j].n === q.item.n) b.classList.add('right');
+    else if(j === i) b.classList.add('wrong');
+  });
+  const fb = $('qzFb');
+  fb.classList.remove('hidden');
+  if(correct){
+    qzScore++;
+    fb.className = 'qfb ok';
+    fb.innerHTML = '<b>正解!</b><span class="ans">' + q.item.en + ' — ' + q.item.jp + '</span><span>' + q.item.ex + '（' + q.item.exjp + '）</span>';
+    setLv(q.item, Math.max(lv(q.item), 2));
+  } else {
+    qzMissed.push(q.item);
+    fb.className = 'qfb ng';
+    fb.innerHTML = '<b>答え: ' + q.item.en + ' — ' + q.item.jp + '</b><span>' + q.item.ex + '（' + q.item.exjp + '）</span>';
+    setLv(q.item, 0);
+  }
+  $('qzNext').classList.remove('hidden');
+  speak(q.item.ex, {el: fb, rate: Math.min(1, store.settings.rate)});
+}
+$('qzNext').addEventListener('click', () => {
+  qzQi++;
+  if(qzQi >= qzQs.length) finishQuiz();
+  else renderQuizQ();
+});
+function finishQuiz(){
+  $('qzFb').classList.add('hidden');
+  $('qzNext').classList.add('hidden');
+  document.querySelector('#view-quiz .qcard').classList.add('hidden');
+  const end = $('qzEnd');
+  end.innerHTML = '';
+  end.appendChild(endBoxHTML(qzScore, qzQs.length, qzMissed, () => { end.classList.add('hidden'); document.querySelector('#view-quiz .qcard').classList.remove('hidden'); startQuiz(); }));
+  end.classList.remove('hidden');
+  $('qzCount').textContent = '結果';
+}
+$('qzDir').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  qzDir = b.dataset.d;
+  document.querySelectorAll('#qzDir button').forEach(x => x.classList.toggle('on', x === b));
+  startQuiz();
+});
+$('quizScope').addEventListener('change', () => startQuiz());
+$('quizRestart').addEventListener('click', () => startQuiz());
+
+/* ================= LIST ================= */
+function renderList(){
+  $('listStat').textContent = '覚えた ' + DATA.filter(d => lv(d) >= 3).length + ' / 100';
+  const body = $('listBody'); body.innerHTML = '';
+  CATS.forEach((c, i) => {
+    if(!c) return;
+    const items = DATA.filter(d => d.cat === i);
+    const sec = document.createElement('div');
+    sec.className = 'listsec';
+    const known = items.filter(d => lv(d) >= 3).length;
+    const h = document.createElement('h3');
+    h.innerHTML = 'CAT.' + i + ' ' + c.name + ' <span class="lstat">' + known + '/' + items.length + '</span>';
+    sec.appendChild(h);
+    items.forEach(d => {
+      const row = document.createElement('button');
+      row.className = 'lrow';
+      row.innerHTML = '<span class="dot l' + lv(d) + '"></span><span class="lno">' + d.n + '</span><span class="lmain"><span class="len">' + d.en + '</span><span class="ljp">' + d.jp + '</span></span><span class="lspk" aria-label="音声を再生"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.4 6a9 9 0 0 1 0 12"/></svg></span>';
+      row.addEventListener('click', e => {
+        if(e.target.closest('.lspk')){ speak(d.ex, {el: row.querySelector('.len')}); return; }
+        openModal(d);
+      });
+      sec.appendChild(row);
+    });
+    body.appendChild(sec);
+  });
+}
+
+/* ================= MODAL ================= */
+let mdItem = null;
+function openModal(d){
+  mdItem = d;
+  $('mdCat').textContent = 'CAT.' + d.cat;
+  $('mdNo').textContent = 'No.' + d.n;
+  $('mdEn').textContent = d.en;
+  $('mdJp').textContent = d.jp;
+  const sl = $('mdSay');
+  if(d.say){ sl.classList.remove('hidden'); sl.innerHTML = '話すときはこう読む: <b>' + d.say + '</b>'; } else sl.classList.add('hidden');
+  $('mdEx').textContent = d.ex;
+  $('mdExJp').textContent = d.exjp;
+  $('modal').classList.remove('hidden');
+  speak(d.ex, {el: $('mdEx')});
+}
+$('modalClose').addEventListener('click', () => { $('modal').classList.add('hidden'); synthCancel(); });
+$('modal').addEventListener('click', e => { if(e.target === $('modal')){ $('modal').classList.add('hidden'); synthCancel(); } });
+$('mdPlay').addEventListener('click', () => speak(mdItem.say || mdItem.en, {el: $('mdEn')}));
+$('mdPlayEx').addEventListener('click', () => speak(mdItem.ex, {el: $('mdEx')}));
+$('mdKnown').addEventListener('click', () => { setLv(mdItem, 3); renderList(); $('modal').classList.add('hidden'); });
+$('mdAgain').addEventListener('click', () => { setLv(mdItem, 0); renderList(); $('modal').classList.add('hidden'); });
+
+/* ================= SETTINGS ================= */
+$('rateSel').value = String(store.settings.rate || 1);
+$('rateSel').addEventListener('change', () => { store.settings.rate = Number($('rateSel').value); saveStore(); });
+$('autoChk').checked = !!store.settings.auto;
+$('autoChk').addEventListener('change', () => { store.settings.auto = $('autoChk').checked; saveStore(); });
+$('testVoice').addEventListener('click', () => speak('Practice makes perfect. Learn from your mistakes.', {wave: heroWaves}));
+$('resetBtn').addEventListener('click', () => {
+  if(confirm('学習記録(覚えた/もう一度の履歴)をすべて消します。よろしいですか?')){
+    store.levels = {}; saveStore(); refreshProgress(); renderList();
+  }
+});
+
+/* ================= INIT ================= */
+fillScopeSelects();
+refreshProgress();
+if(!synth) $('voiceWarn').classList.add('show');
+if(!SR){ /* speak view falls back to self-check on demand */ }
+</script>
+</body>
+</html>
